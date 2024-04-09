@@ -23,7 +23,7 @@ function ServiceDetailsNFRegex() {
         <ServiceRow service={serviceInfo} />
         {(!regexesList.data || regexesList.data.length == 0)?<>
                 <Space h="xl" />
-                <Title className='center-flex' align='center' order={3}>No regex found for this service! Add one by clicking the "+" buttons</Title>
+                <Title className='center-flex' style={{ textAlign: "center" }} order={3}>No regex found for this service! Add one by clicking the "+" buttons</Title>
                 <Space h="xl" /> <Space h="xl" />
                 <div className='center-flex'>
                     <Tooltip label="Add a new regex" zIndex={0} color="blue" opened={tooltipAddRegexOpened}>
@@ -35,7 +35,7 @@ function ServiceDetailsNFRegex() {
                 </div>
             </>:
             <Grid>
-                {regexesList.data?.map( (regexInfo) => <Grid.Col key={regexInfo.id} lg={6} xs={12}><RegexView regexInfo={regexInfo} /></Grid.Col>)}
+                {regexesList.data?.map( (regexInfo) => <Grid.Col key={regexInfo.id} span={{lg:6, xs: 12}}><RegexView regexInfo={regexInfo} /></Grid.Col>)}
             </Grid>
         }
 

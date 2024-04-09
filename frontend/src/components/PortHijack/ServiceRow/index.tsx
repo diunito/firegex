@@ -138,12 +138,12 @@ function ServiceRow({ service }:{ service:Service }) {
             <div className="center-flex">
                 <MenuDropDownWithButton>
                     <Menu.Label><b>Rename service</b></Menu.Label>
-                    <Menu.Item icon={<BiRename size={18} />} onClick={()=>setRenameModal(true)}>Change service name</Menu.Item>
+                    <Menu.Item leftSection={<BiRename size={18} />} onClick={()=>setRenameModal(true)}>Change service name</Menu.Item>
                     <Menu.Label><b>Change destination</b></Menu.Label>
-                    <Menu.Item icon={<BsArrowRepeat size={18} />} onClick={()=>setChangeDestModal(true)}>Change hijacking destination</Menu.Item>
+                    <Menu.Item leftSection={<BsArrowRepeat size={18} />} onClick={()=>setChangeDestModal(true)}>Change hijacking destination</Menu.Item>
                     <Divider />
                     <Menu.Label><b>Danger zone</b></Menu.Label>
-                    <Menu.Item color="red" icon={<BsTrashFill size={18} />} onClick={()=>setDeleteModal(true)}>Delete Service</Menu.Item>
+                    <Menu.Item color="red" leftSection={<BsTrashFill size={18} />} onClick={()=>setDeleteModal(true)}>Delete Service</Menu.Item>
                 </MenuDropDownWithButton>
                 <Space w="md"/>                        
                 <Tooltip label="Stop service" zIndex={0} color="red" opened={tooltipStopOpened}>

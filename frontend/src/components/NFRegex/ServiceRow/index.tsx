@@ -73,7 +73,7 @@ function ServiceRow({ service, onClick }:{ service:Service, onClick?:()=>void })
 
     return <>
         <Grid className={style.row} justify="flex-end" style={{width:"100%"}}>
-            <Grid.Col md={4} xs={12}>
+            <Grid.Col span={{md: 4, xs:12}}>
 
                 <div className={isMedium?"center-flex-row":"center-flex"}>
                     <div className="center-flex"><Title className={style.name}>{service.name}</Title> <Badge size="xl" gradient={{ from: 'indigo', to: 'cyan' }} variant="gradient">:{service.port}</Badge></div>
@@ -83,7 +83,7 @@ function ServiceRow({ service, onClick }:{ service:Service, onClick?:()=>void })
                 {!isMedium?<Space h="xl" />:null}
             </Grid.Col>
             
-            <Grid.Col className="center-flex" md={8} xs={12}>
+            <Grid.Col className="center-flex" span={{md:8, xs:12}}>
                 {!isMedium?<div className='flex-spacer' />:<><Space w="xl" /><Space w="xl" /></>}
                 
                 <div className="center-flex-row">
@@ -97,10 +97,10 @@ function ServiceRow({ service, onClick }:{ service:Service, onClick?:()=>void })
                 <div className="center-flex">
                     <MenuDropDownWithButton>
                         <Menu.Label><b>Rename service</b></Menu.Label>
-                        <Menu.Item icon={<BiRename size={18} />} onClick={()=>setRenameModal(true)}>Change service name</Menu.Item>
+                        <Menu.Item leftSection={<BiRename size={18} />} onClick={()=>setRenameModal(true)}>Change service name</Menu.Item>
                         <Divider />
                         <Menu.Label><b>Danger zone</b></Menu.Label>
-                        <Menu.Item color="red" icon={<BsTrashFill size={18} />} onClick={()=>setDeleteModal(true)}>Delete Service</Menu.Item>
+                        <Menu.Item color="red" leftSection={<BsTrashFill size={18} />} onClick={()=>setDeleteModal(true)}>Delete Service</Menu.Item>
                     </MenuDropDownWithButton>
                     <Space w="md"/>                        
                     <Tooltip label="Stop service" zIndex={0} color="red" opened={tooltipStopOpened}>

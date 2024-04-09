@@ -102,7 +102,7 @@ function ServiceRow({ service, onClick }:{ service:Service, onClick?:()=>void })
 
     return <>
         <Grid className={style.row} justify="flex-end" style={{width:"100%"}}>
-            <Grid.Col md={4} xs={12}>
+            <Grid.Col span={{md:4,xs:12}}>
                 <div className={isMedium?"center-flex-row":"center-flex"}>
                     <div className="center-flex"><Title className={style.name}>{service.name}</Title> <Badge size="xl" gradient={{ from: 'indigo', to: 'cyan' }} variant="gradient">:{service.public_port}</Badge></div>
                     <Badge color={status_color} size="lg" radius="md">{service.internal_port} {"->"} {service.public_port}</Badge>
@@ -110,7 +110,7 @@ function ServiceRow({ service, onClick }:{ service:Service, onClick?:()=>void })
                 {!isMedium?<Space h="xl" />:null}
             </Grid.Col>
             
-            <Grid.Col className="center-flex" md={8} xs={12}>
+            <Grid.Col className="center-flex" span={{md:8, xs:12}}>
                 {!isMedium?<div className='flex-spacer' />:<><Space w="xl" /><Space w="xl" /></>}
                 <div className="center-flex-row">
                     <Badge style={{marginBottom:"20px"}} color={status_color} radius="sm" size="lg" variant="filled">Status: <u>{service.status}</u></Badge>
@@ -121,14 +121,14 @@ function ServiceRow({ service, onClick }:{ service:Service, onClick?:()=>void })
                 <div className="center-flex">
                     <MenuDropDownWithButton>
                         <Menu.Label><b>Rename service</b></Menu.Label>
-                        <Menu.Item icon={<BiRename size={18} />} onClick={()=>setRenameModal(true)}>Change service name</Menu.Item>
+                        <Menu.Item leftSection={<BiRename size={18} />} onClick={()=>setRenameModal(true)}>Change service name</Menu.Item>
                         <Divider />
                         <Menu.Label><b>Change ports</b></Menu.Label>
-                        <Menu.Item icon={<TbNumbers size={18} />} onClick={()=>setChoosePortModal(true)}>Change port</Menu.Item>
-                        <Menu.Item icon={<BsArrowRepeat size={18} />} onClick={()=>setChangePortModal(true)}>Regen proxy port</Menu.Item>
+                        <Menu.Item leftSection={<TbNumbers size={18} />} onClick={()=>setChoosePortModal(true)}>Change port</Menu.Item>
+                        <Menu.Item leftSection={<BsArrowRepeat size={18} />} onClick={()=>setChangePortModal(true)}>Regen proxy port</Menu.Item>
                         <Divider />
                         <Menu.Label><b>Danger zone</b></Menu.Label>
-                        <Menu.Item color="red" icon={<BsTrashFill size={18} />} onClick={()=>setDeleteModal(true)}>Delete Service</Menu.Item>
+                        <Menu.Item color="red" leftSection={<BsTrashFill size={18} />} onClick={()=>setDeleteModal(true)}>Delete Service</Menu.Item>
                     </MenuDropDownWithButton>
                     <Space w="md"/>
                     {["pause","wait"].includes(service.status)?

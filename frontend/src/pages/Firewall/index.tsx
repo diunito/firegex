@@ -37,8 +37,8 @@ export const Firewall = () => {
     const [applyChangeModal, setApplyChangeModal] = useState(false)
     const [settingsModal, setSettingsModal] = useState(false)
     const theme = useMantineTheme();
-    const isMedium = useMediaQuery(`(min-width: 950px)`)
-    const isSmall = useMediaQuery(`(max-width: 600px)`)
+    const isMedium = useMediaQuery(`(min-width: 950px)`)??false
+    const isSmall = useMediaQuery(`(max-width: 600px)`)??false
 
     const [updateMevalueinternal, internalUpdateme] = useState(false)
     const updateMe = () => {
@@ -148,12 +148,12 @@ export const Firewall = () => {
         <Draggable key={item.rule_id} index={index} draggableId={item.rule_id}>
           {(provided, snapshot) => {
             const customInt = [
-              { value: "0.0.0.0/0", netint: "ANY IPv4", label: "0.0.0.0/0" },
-              { value: "::/0", netint: "ANY IPv6", label: "::/0" },
-              { value: "", netint: "ANY", label: "ANY" }
+              { value: "0.0.0.0/0", netint: "ANY IPv4" },
+              { value: "::/0", netint: "ANY IPv6" },
+              { value: "ANY", netint: "ANY" }
             ]
-            const src_custom_int = customInt.map(v => v.value).includes(item.src)?[]:[{ value: item.src, netint: "SELECTED", label: item.src }]
-            const dst_custom_int = customInt.map(v => v.value).includes(item.dst)?[]:[{ value: item.dst, netint: "SELECTED", label: item.dst }]
+            const src_custom_int = customInt.map(v => v.value).includes(item.src)?[]:[{ value: item.src, netint: "SELECTED" }]
+            const dst_custom_int = customInt.map(v => v.value).includes(item.dst)?[]:[{ value: item.dst, netint: "SELECTED" }]
             const [srcPortEnabled, setSrcPortEnabled] = useState(item.port_src_from != 1 || item.port_src_to != 65535)
             const [dstPortEnabled, setDstPortEnabled] = useState(item.port_dst_from != 1 || item.port_dst_to != 65535)
             const [srcPortValue, setSrcPortValue] = useState(item.port_src_from==item.port_src_to?`${item.port_src_from}`:`${item.port_src_from}-${item.port_src_to}`)
@@ -278,7 +278,7 @@ export const Firewall = () => {
                   <div style={{width:"100%"}}>
                   <InterfaceInput
                     initialCustomInterfaces={[...dst_custom_int, ...customInt]}
-                    defaultValue={item.dst}
+                    value={item.dst}
                     onChange={v => ip_setter(item, v, {dst:true})}
                     includeInterfaceNames
                   />
@@ -404,7 +404,7 @@ export const Firewall = () => {
             )}
           </Droppable>
         </DragDropContext>:<>
-    <Space h="xl"/> <Title className='center-flex' align='center' order={3}>No rule found! Add one clicking the "+" buttons</Title>
+    <Space h="xl"/> <Title className='center-flex' order={3}>No rule found! Add one clicking the "+" buttons</Title>
     <Space h="xl" /> <Space h="xl" /> 
     <div className='center-flex'>
         <Tooltip label="Add a new rule" color="blue" opened={tooltipAddRulOpened}>

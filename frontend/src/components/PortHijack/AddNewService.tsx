@@ -94,7 +94,7 @@ function AddNewService({ opened, onClose }:{ opened:boolean, onClose:()=>void })
                 />
             </div>      
 
-            <Group position="right" mt="md">
+            <Group align="right" mt="md">
                 <Button loading={submitLoading} type="submit">Add Service</Button>
             </Group>
 

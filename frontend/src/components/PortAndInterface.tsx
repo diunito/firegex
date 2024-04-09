@@ -1,15 +1,15 @@
-import { AutocompleteItem, Select, Space, Title } from "@mantine/core"
-import React, { useEffect, useState } from "react"
-import { ipInterfacesQuery } from "../js/utils";
+import { Space, Title } from "@mantine/core"
 import PortInput from "./PortInput";
 import { UseFormReturnType } from "@mantine/form/lib/types";
 import { InterfaceInput } from "./InterfaceInput";
+import { forwardRef } from "react";
 
-interface ItemProps extends AutocompleteItem {
+interface ItemProps {
+    value: string;
     netint: string;
 }
 
-const AutoCompleteItem = React.forwardRef<HTMLDivElement, ItemProps>(
+const AutoCompleteItem = forwardRef<HTMLDivElement, ItemProps>(
     ({ netint, value, ...props }: ItemProps, ref) => <div ref={ref} {...props}>
             ( <b>{netint}</b> ) -{">"} <b>{value}</b> 
     </div>

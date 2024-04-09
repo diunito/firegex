@@ -22,23 +22,18 @@ function MainLayout({ children }:{ children:any }) {
 
 
   return <>  
-      
-  <AppShell
-    padding="md"
-    fixed
-    navbar={<NavBar closeNav={()=>setOpened(false)} opened={opened} />}
-    header={<HeaderPage navOpen={opened} setNav={setOpened} />}
-    footer={<FooterPage />}
-  >
-    <Container size="lg">
-        {children}
-    </Container>
-  <Space h="lg" />
-
-  </AppShell>
-
+    <AppShell padding="md">
+    <AppShell.Navbar><NavBar closeNav={()=>setOpened(false)} opened={opened} /></AppShell.Navbar>
+    <AppShell.Header><HeaderPage navOpen={opened} setNav={setOpened} /> </AppShell.Header>
+    <AppShell.Footer><FooterPage /></AppShell.Footer>
+    <AppShell.Main>
+      <Container size="lg">
+            {children}
+        </Container>
+      <Space h="lg" />
+    </AppShell.Main>
+    </AppShell>
 </>
-
 }
 
 export default MainLayout;

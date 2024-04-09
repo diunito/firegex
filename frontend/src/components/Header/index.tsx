@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ActionIcon, Divider, Image, Menu, Tooltip, Burger, Space, Header, Button, ThemeIcon } from '@mantine/core';
+import { ActionIcon, Divider, Image, Menu, Tooltip, Burger, Space, AppShellHeader } from '@mantine/core';
 import style from "./index.module.scss";
 import { errorNotify, getmainpath, isLargeScreen, logout } from '../../js/utils';
 import { AiFillHome } from "react-icons/ai"
@@ -34,7 +34,7 @@ function HeaderPage({navOpen, setNav, ...other}: { navOpen: boolean, setNav:Reac
   const [tooltipLogoutOpened,setTooltipLogoutOpened] = useState(false);
   const isLarge = isLargeScreen()
   console.log(isLarge)
-  return <Header height={100} className={style.header} {...other}>
+  return <AppShellHeader h={100} className={style.header} {...other}>
         <Space w="lg" />
         {isLarge?null:<div>
           <Burger
@@ -55,10 +55,10 @@ function HeaderPage({navOpen, setNav, ...other}: { navOpen: boolean, setNav:Reac
       
         <MenuDropDownWithButton>
           <Menu.Label>Firewall Access</Menu.Label>
-          <Menu.Item icon={<FaLock size={14} />} onClick={() => setChangePasswordModal(true)}>Change Password</Menu.Item>
+          <Menu.Item leftSection={<FaLock size={14} />} onClick={() => setChangePasswordModal(true)}>Change Password</Menu.Item>
           <Divider />
           <Menu.Label>Actions</Menu.Label>
-          <Menu.Item color="red" icon={<MdOutlineSettingsBackupRestore size={18} />} onClick={() => setResetFiregexModal(true)}>Reset Firegex</Menu.Item>
+          <Menu.Item color="red" leftSection={<MdOutlineSettingsBackupRestore size={18} />} onClick={() => setResetFiregexModal(true)}>Reset Firegex</Menu.Item>
         </MenuDropDownWithButton>
         <Space w="md" />
         <Tooltip label="Home" position='bottom' color="teal" opened={tooltipHomeOpened}>
@@ -78,7 +78,7 @@ function HeaderPage({navOpen, setNav, ...other}: { navOpen: boolean, setNav:Reac
         <ResetPasswordModal opened={changePasswordModal} onClose={() => setChangePasswordModal(false)} />
         <ResetModal opened={resetFiregexModal} onClose={() => setResetFiregexModal(false)} />
         <Space w="xl" />
-  </Header>
+  </AppShellHeader>
 }
 
 export default HeaderPage;
